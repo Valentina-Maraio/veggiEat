@@ -1,8 +1,13 @@
+import React, { useState } from "react";
 import { StyleSheet, Image, TextInput } from "react-native";
-
 import { Text, View } from "../../components/Themed";
+import { Searchbar } from "react-native-paper";
+import { StatusBar } from "expo-status-bar";
 
 export default function TabOneScreen() {
+
+  const [input, setInput] = useState("");
+
   return (
     <>
       <View style={styles.container}>
@@ -11,8 +16,15 @@ export default function TabOneScreen() {
           style={styles.image}
         />
       </View>
-      <View style={styles.box}>
-        <Text style={styles.title}>Search your next veggie meal</Text>
+      <View style={styles.inputBox}>
+        <Searchbar
+          placeholder="Search"
+          onChangeText={(text) => {
+            setInput(text);
+          }}
+          value={input}
+        />
+        <StatusBar style="auto" />
       </View>
     </>
   );
@@ -27,7 +39,10 @@ const styles = StyleSheet.create({
   box: {
     flex: 2,
     justifyContent: "center",
-    backgroundColor: '#7AAFE6',
+    backgroundColor: "#7AAFE6",
+  },
+  inputBox: {
+    flex: 1,
   },
   image: {
     alignItems: "center",
@@ -39,7 +54,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 20,
     fontWeight: "bold",
-    margin: 20
+    margin: 20,
   },
   separator: {
     marginVertical: 30,
